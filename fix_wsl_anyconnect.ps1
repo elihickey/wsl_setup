@@ -8,11 +8,44 @@
     1.  Remove and recreate /etc/wsl.conf with setting generateResolvConf = false
     2.  Remove and recreate /etc/resolv.conf with the appropriate dns nameservers for the current connection.
     3.  Update the IP Interfaces for Cisco AnyConnect applying the metric of 6000 to the ipv4 interfaces
+    # todo first add a check - if wsl-ubuntu is up
+# next add check if dns is working
+# only fix what needs to be fixed.
+# if cisco is down make sure dns ir right.
+# check dns with  --spider option - check page loads with out
+# wget -q --spider --dns-timeout=2 http://google.com  
 
 #>
-$allInterfaces = Get-NetIPInterface
+function UpdateResolve {
+    param (
+        $dnsServers
+    )
+    $dnsServersStr = "[network]"
+    foreach ($server in $dnsServers) {
+        $dnsServersStr += "`n" + "nameserver " + $server
+    }
+    wsl -d Ubuntu --user root rm /etc/resolv.conf  
+    wsl -d Ubuntu --user root rm /etc/wsl.conf  
+    wsl -d Ubuntu --user root echo -e `"[network]\ngenerateResolvConf = false`" `| tee /etc/wsl.conf 
+    wsl -d Ubuntu --user root echo -e `"$dnsServersStr`" `| tee /etc/resolv.conf
+        
+}
+$wslStatus = wsl -l -v | Out-String | Select-String -Pattern 'U.b.u.n.t.u.*?R.u.n.n.i.n.g'
+if ($wslStatus.Matches) {
+    Write-Output "Ubuntu Running"
+} else {
+    Write-Output "Ubuntu Is not running - no need to continue"
+    exit
+}
+
+wsl -d Ubuntu --exec wget -o wget.log --spider --dns-timeout=2 http://google.com 
+$temp = wsl -d Ubuntu --exec cat wget.log  
+$netCheck = $temp | Select-String -Pattern 'connected\.' 
+if ($netCheck.Matches) {
+    Write-Output  "WSL has internet connection - no need to continue"
+    exit
+}
 $allAdpters = Get-NetAdapter
-$dnsClients = Get-DnsClientServerAddress
 $ciscoIndex = ""
 $ciscoStatus = ""
 [System.Collections.ArrayList]$dnsServers = @()
@@ -22,24 +55,23 @@ foreach ($adapter in $allAdpters) {
         $ciscoStatus = $adapter.Status;
     }
 }
-
-foreach ($dnsClient in $dnsClients) {
-    if( $dnsClient.InterfaceIndex -eq $ciscoIndex) {
-        #todo figure out how to skip when empty or status?
-       if ($dnsClient.ServerAddresses) {
-            $dnsServers = $dnsClient.ServerAddresses
-       }
+if (!$ciscoIndex) {
+    Write-Output "Anyconnect is not connected. Checking for default DNS"
+    $dns = wsl -d Ubuntu cat /etc/resolv.conf | Select-String -Pattern '1\.1\.1\.1'
+    if (!$dns.Matches) {
+        Write-Output "Changing DNS to default"
+        $dnsServers.Add("1.1.1.1")
+        UpdateResolve -dnsServers $dnsServers
     }
+    exit
 }
+# made it this far - wsl up,  no internet,  and any connect is connect
+# fix dns and metric
 
-if (!$dnsServers) {
-   $dnsServers.Add("1.1.1.1")
-}
-$dnsServersStr = "[network]"
-foreach ($server in $dnsServers) {
-    $dnsServersStr += "`n" + "nameserver " + $server
-}
 
+
+
+$allInterfaces = Get-NetIPInterface
 foreach ($interface in $allInterfaces ) {
     if ($interface.ifIndex -eq $ciscoIndex  -and $interface.AddressFamily -eq "IPv4") {
         $ciscoIpV4Interface = $interface
@@ -47,11 +79,19 @@ foreach ($interface in $allInterfaces ) {
     }
 }
 
-if ($ciscoMetric -ne "6000" -and $ciscoStatus -eq "Up"  ) {
+if ($ciscoMetric -ne "6000" -and $ciscoStatus -eq "Up"  -and $ciscoIpV4Interface ) {
+    Write-Output "Change Metric "
     Set-NetIPInterface -InputObject $ciscoIpV4Interface -InterfaceMetric "6000" 
 }
 
-wsl -d Ubuntu --user root rm /etc/resolv.conf  
-wsl -d Ubuntu --user root rm /etc/wsl.conf  
-wsl -d Ubuntu --user root echo -e `"[network]\ngenerateResolvConf = false`" `| tee /etc/wsl.conf 
-wsl -d Ubuntu --user root echo -e `"$dnsServersStr`" `| tee /etc/resolv.conf
+$dnsClients = Get-DnsClientServerAddress
+foreach ($dnsClient in $dnsClients) {
+    if( $dnsClient.InterfaceIndex -eq $ciscoIndex) {
+        if ($dnsClient.ServerAddresses) {
+            $dnsServers = $dnsClient.ServerAddresses
+        }
+    }
+}
+UpdateResolve -dnsServers $dnsServers
+
+

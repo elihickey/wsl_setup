@@ -66,6 +66,12 @@ if ! grep -q $ellReg "$HOME/.npmrc"  ; then
     echo $ellReg | sudo tee -a $HOME/.npmrc  > /dev/null
 fi
 
+output "Checking PATH variable for node_modules"
+newPath='export PATH="./node_modules/.bin:$PATH"'
+if ! grep -q $newPath "$HOME/.bashrc"  ; then
+    output "Adding node_modules path  .bashrc"
+    echo $newPath | sudo tee -a $HOME/.bashrc  > /dev/null
+fi
 
 
 output "You should now be ready to initialize your first pipeline project"
