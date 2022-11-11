@@ -5,7 +5,7 @@ Following these steps will make sure the system is ready to run any project requ
 Setup Steps
 ----------------
 1. Disconnect Cisco AnyConnect VPN if connected
-1. (Open Powershell ISE as administrator)[https://github.com/elihickey/wsl_setup/blob/main/docs/screenShots.md#opening-powershell-ise-as-administrator]
+1. [Open Powershell ISE as administrator}(https://github.com/elihickey/wsl_setup/blob/main/docs/screenShots.md#opening-powershell-ise-as-administrator)
     1. Click New file Button
     1. [Copy and Paste Script](https://github.com/elihickey/wsl_setup/blob/main/installer.ps1)
     1. Click Run Script (f5)
