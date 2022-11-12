@@ -26,9 +26,6 @@ Foreach ($app in $apps) {
 
 # Download GitHub Project
 
-$command = "gh auth login"
-Invoke-Expression $command
-
 $command = "gh repo clone elihickey/wsl_setup " + $installPath
 Invoke-Expression $command
 

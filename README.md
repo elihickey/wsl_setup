@@ -22,7 +22,6 @@ Note: Disconnect Cisco AnyConnect VPN if connected
     
 1. Installer may take a while to run.  Watch for prompts...
     1. Script Execution Policy (yes to all)
-    1. Git Hub Login will provide a one-time code and link for you to enter code
     1. Ubuntu will prompt for new user and password - remember what you enter here!  
 1. Connect Cisco Any Connect VPN
 1. In ubuntu confirm you have internet access with a command like ping google.com
