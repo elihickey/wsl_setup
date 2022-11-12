@@ -8,13 +8,6 @@
     1.  Remove and recreate /etc/wsl.conf with setting generateResolvConf = false
     2.  Remove and recreate /etc/resolv.conf with the appropriate dns nameservers for the current connection.
     3.  Update the IP Interfaces for Cisco AnyConnect applying the metric of 6000 to the ipv4 interfaces
-    # todo first add a check - if wsl-ubuntu is up
-# next add check if dns is working
-# only fix what needs to be fixed.
-# if cisco is down make sure dns ir right.
-# check dns with  --spider option - check page loads with out
-# wget -q --spider --dns-timeout=2 http://google.com  
-
 #>
 function UpdateResolve {
     param (
