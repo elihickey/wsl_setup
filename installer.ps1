@@ -67,25 +67,3 @@ wsl --list --verbose
 wsl --setdefault Ubuntu
 
 
-# Ask Install Pre-Reqs for Data Connect Developer
-$loop = 1
-while($loop -eq 1){
-    $continue = Read-Host 'Install Data Connect Developer Pre-Reqs in WSL? (Y/N)'
-    $continue = $continue.Substring(0,1)
-    switch ($continue) {
-        Y { $loop = 0}
-        N { $loop = 0 }
-        default { Write-Host 'Only Y/N valid' -fore red }
-    }
-}
-
-
-if ($continue -eq "y") {
-Write-Host Installing Pre-Reqs for Data Connect Developer
-$wsl_dcd_prereqPath = "./mnt/" +$env:userprofile + "\wsl_setup\wsl_dcd_prereq.sh"
-$wsl_dcd_prereqPath = $wsl_dcd_prereqPath.Replace("\","/").Replace(":","").ToLower()
-wsl -e $wsl_dcd_prereqPath   
-# not working
-}
-
-
