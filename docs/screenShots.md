@@ -2,3 +2,6 @@
 
 ## Opening Powershell ISE as Administrator
 ![Open Powershell](/docs/startISEasAdmin.png)
+
+## Scripts in ISE
+![Paste Script](startISEasAdmin.png)

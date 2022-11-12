@@ -9,12 +9,12 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
 Write-Output "Installing Apps: Git, VS Code, Terminal, and Ubunto if needed"
 $apps = @(
     @{name = "Git.Git" },
-    @{name = "Microsoft.VisualStudioCode" },
+    @{name = "Microsoft Visual Studio Code" },
     @{name = "Microsoft.WindowsTerminal" },
     @{name = "Canonical.Ubuntu" })
 
 Foreach ($app in $apps) {
-    $listApp = winget list --exact -q $app.name  --accept-source-agreements --accept-package-agreements
+    $listApp = winget list --exact -q $app.name  --accept-source-agreements
     if (![String]::Join("", $listApp).Contains($app.name)) {
         Write-host "Installing: " $app.name
         winget install -e -h --accept-source-agreements --accept-package-agreements --id $app.name 

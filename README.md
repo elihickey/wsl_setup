@@ -13,16 +13,14 @@ Performs a number of tasks
 ## Mostly Scripted Setup
 
 Note: Disconnect Cisco AnyConnect VPN if connected
-
-1. [To run script](https://github.com/elihickey/wsl_setup/blob/main/installer.ps1)
-    1. [Open Powershell ISE as administrator](https://github.com/elihickey/wsl_setup/blob/main/docs/screenShots.md#opening-powershell-ise-as-administrator)
-    1. Click New file Button
-    1. [Copy and Paste installer.ps1 Script](https://github.com/elihickey/wsl_setup/blob/main/installer.ps1)
-    1. Click Run Script (f5)
-    
+1. Install the [App Installer](https://www.microsoft.com/en-us/p/app-installer/9nblggh4nns1) so we can automate the application installs
+1. Open Powershell ISE as administrator [see screenshot] (https://github.com/elihickey/wsl_setup/blob/main/docs/screenShots.md#opening-powershell-ise-as-administrator)
+1. Paste Script from [installer.ps1](https://raw.githubusercontent.com/elihickey/wsl_setup/main/installer.ps1) to Powershell ISE [see screenshot](https://github.com/elihickey/wsl_setup/blob/main/docs/screenShots.md#scripts-in-ise)
+    Note - Just run the script with out saving - if you save you will also need to `Unblock-File -Path <path>`
+1. Run Script (f5)
 1. Installer may take a while to run.  Watch for prompts...
     1. Script Execution Policy (yes to all)
-    1. Ubuntu will prompt for new user and password - remember what you enter here!  
+    2. Ubuntu will prompt for new user and password - remember what you enter here!  
 1. Connect Cisco Any Connect VPN
 1. In ubuntu confirm you have internet access with a command like ping google.com
 
