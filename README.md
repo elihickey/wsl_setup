@@ -14,9 +14,9 @@ Performs a number of tasks
 
 Note: Disconnect Cisco AnyConnect VPN if connected
 1. Install the [App Installer](https://www.microsoft.com/en-us/p/app-installer/9nblggh4nns1) so we can automate the application installs
-1. Open Powershell ISE as administrator [see screenshot] (https://github.com/elihickey/wsl_setup/blob/main/docs/screenShots.md#opening-powershell-ise-as-administrator)
+1. Open Powershell ISE as administrator [see screenshot](https://github.com/elihickey/wsl_setup/blob/main/docs/screenShots.md#opening-powershell-ise-as-administrator)
 1. Paste Script from [installer.ps1](https://raw.githubusercontent.com/elihickey/wsl_setup/main/installer.ps1) to Powershell ISE [see screenshot](https://github.com/elihickey/wsl_setup/blob/main/docs/screenShots.md#scripts-in-ise)
-    Note - Just run the script with out saving - if you save you will also need to `Unblock-File -Path <path>`
+   * :warning: Run the script with out saving - if you save you will also need to `Unblock-File -Path <path>`
 1. Run Script (f5)
 1. Installer may take a while to run.  Watch for prompts...
     1. Script Execution Policy (yes to all)
