@@ -1,15 +1,28 @@
-Windows Set Up Steps
+# Windows Set Up Steps
 ====================
 Following these steps will make sure the system is ready to run any project requiring NPM, Puppeteer, and/or Cisco AnyConnect VPN connection in WSL.
 
-Setup Steps
+## Mostly Scripted Setup
 ----------------
-1. Disconnect Cisco AnyConnect VPN if connected
-1. [Open Powershell ISE as administrator](https://github.com/elihickey/wsl_setup/blob/main/docs/screenShots.md#opening-powershell-ise-as-administrator)
+
+Note: Disconnect Cisco AnyConnect VPN if connected
+
+1. [Run installer.ps1](https://github.com/elihickey/wsl_setup/blob/main/installer.ps1)
+    1. [Open Powershell ISE as administrator](https://github.com/elihickey/wsl_setup/blob/main/docs/screenShots.md#opening-powershell-ise-as-administrator)
     1. Click New file Button
     1. [Copy and Paste Script](https://github.com/elihickey/wsl_setup/blob/main/installer.ps1)
     1. Click Run Script (f5)
+    
+1. Installer may take a while to run.  Watch for prompts...
+    1. Script Execution Policy (yes to all)
+    1. Git Hub Login will provide a one-time code and link for you to enter code
+    1. Ubuntu will prompt for new user and password - remember what you enter here!  
+1. For DCD  go to ubuntu then: 
+    1. wget https://github.com/elihickey/wsl_setup/blob/main/wsl_dcd_prereq.sh
+    1. bash wsl_dcd_prereq.sh
 
+## Manual Setup
+----------------
 
 1. Disconnect Cisco AnyConnect VPN if connected
 1. Install [VS Code](https://code.visualstudio.com/download)
