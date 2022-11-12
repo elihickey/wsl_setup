@@ -14,7 +14,7 @@ $apps = @(
     @{name = "Canonical.Ubuntu" })
 
 Foreach ($app in $apps) {
-    $listApp = winget list --exact -q $app.name
+    $listApp = winget list --exact -q $app.name  --accept-source-agreements --accept-package-agreements
     if (![String]::Join("", $listApp).Contains($app.name)) {
         Write-host "Installing: " $app.name
         winget install -e -h --accept-source-agreements --accept-package-agreements --id $app.name 
