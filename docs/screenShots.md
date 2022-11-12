@@ -4,4 +4,4 @@
 ![Open Powershell](/docs/startISEasAdmin.png)
 
 ## Scripts in ISE
-![Paste Script](startISEasAdmin.png)
+![Paste Script](/docs/script-in-ise.png)

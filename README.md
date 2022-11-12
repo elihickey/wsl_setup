@@ -22,7 +22,7 @@ Note: Disconnect Cisco AnyConnect VPN if connected
     1. Script Execution Policy (yes to all)
     2. Ubuntu will prompt for new user and password - remember what you enter here!  
 5. Connect Cisco Any Connect VPN
-6. In ubuntu confirm you have internet access with a command like ping google.com
+6. In ubuntu confirm you have internet access with a linux command like `ping google.com`
 
 
 ## Data Connect Developer Prerequisites
