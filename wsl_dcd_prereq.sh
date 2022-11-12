@@ -13,14 +13,6 @@ function output () {
         echo -e "$msg" | ( TAB=$'\t' ; sed "s/^/$TAB/" ) 
         #echo -e "$1" | tee -a /home/emh/network_fix.log > /dev/null
     }
-wget -q --spider --dns-timeout=2 http://google.com 
-if [ $? -eq 0 ]; then
-    output "Internet is Connected"
-else
-    output "Could not connect. Please Check Internet Connection.  See WSL/Anyconnect fix https://...tbd..." error
-    exit 1 
-fi
-
 
 # Installing NVM see https://github.com/nvm-sh/nvm#installing-and-updating
 if [ -d "$HOME/.nvm" ]; then
