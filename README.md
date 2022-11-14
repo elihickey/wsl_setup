@@ -1,4 +1,4 @@
-# Setup for WSL with Cisco AnyConnect
+# Setup for WSL2 with Cisco AnyConnect
 
 Performs a number of tasks
 1. Installs software if needed
@@ -25,9 +25,9 @@ Note: Disconnect Cisco AnyConnect VPN if connected
 6. In ubuntu confirm you have internet access with a linux command like `ping google.com`
 
 
-## Data Connect Developer Prerequisites
+## Set up WSL 2 with puppeteer
 
-If you plan to use DCD in WSL use these commands in ubuntu to run pre-requisites.
+Run these commands to add useful prerequisites to ubuntu
 ```
 cd ~
 git clone https://github.com/elihickey/wsl_setup.git
@@ -37,8 +37,6 @@ Note: you will be prompted for ubuntu password.
 
 :grey_exclamation:Restart terminal for all changes to take affect.
 
-You are now ready to follow the steps in [Data Connect Developer](https://git.ellucian.com/projects/ELLABORATION/repos/data-connect-developer/browse)  starting with
-` npx @ellucian/data-connect-developer init-project <project-name>`
 
 ## Known Issues
 

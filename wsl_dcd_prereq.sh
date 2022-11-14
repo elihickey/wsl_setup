@@ -66,5 +66,5 @@ if ! grep -q $newPath "$HOME/.bashrc"  ; then
 fi
 
 
-output "You should now be ready to initialize your first pipeline project"
-output "  with command: npx @ellucian/data-connect-developer init-project <project-name>"
+output "You should now be ready to use Ubuntu"
+
