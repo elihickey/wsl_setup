@@ -30,7 +30,7 @@ $command = "gh repo clone elihickey/wsl_setup " + $installPath
 Invoke-Expression $command
 
 
-# setup windows task
+# setup windows task todo add check and only do if winget shows any connect installed -name "Cisco AnyConnect Secure Mobility Client"
 $anyConnectFixPath = $env:userprofile + "\wsl_setup\fix_wsl_anyconnect.ps1"
 Unblock-File -Path  $anyConnectFixPath
 $argument = "/c powershell.exe " + $anyConnectFixPath 
