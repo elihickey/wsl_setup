@@ -26,7 +26,8 @@ Foreach ($app in $apps) {
 
 # Download GitHub Project
 
-$command = "gh repo clone elihickey/wsl_setup " + $installPath
+//$command = "gh repo clone elihickey/wsl_setup " + $installPath
+$command = "git clone https://github.com/elihickey/wsl_setup.git" + $installPath
 Invoke-Expression $command
 
 
