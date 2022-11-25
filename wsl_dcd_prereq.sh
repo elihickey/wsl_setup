@@ -59,7 +59,7 @@ if ! grep -q $ellReg "$HOME/.npmrc"  ; then
 fi
 
 output "Checking PATH variable for node_modules"
-newPath='export PATH="./node_modules/.bin:$PATH"'
+newPath='export PATH="$PATH:./node_modules/.bin"'
 if ! grep -q $newPath "$HOME/.bashrc"  ; then
     output "Adding node_modules path  .bashrc"
     echo $newPath | sudo tee -a $HOME/.bashrc  > /dev/null
